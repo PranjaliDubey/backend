@@ -30,6 +30,7 @@ var employee = new mongoose.Schema({
 employee.plugin(AutoIncrement, {inc_field: '_id'});
 
 employee.index({ _id: 1, seq: 1 }, { unique: true })
+
 export default mongoose.model(
     "Employee",
     employee

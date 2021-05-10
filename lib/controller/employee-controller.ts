@@ -5,7 +5,7 @@ import Employee from '../modules/employee-model'
 
 // Baisc APi GET
 async function hello(req: Request, res: Response, next: NextFunction) {
-  res.status(400).send("unable to save to database");
+  res.status(200).send("welcome");
 }
 
 // To insert data in db
@@ -22,6 +22,7 @@ try{
     emp_mobile_no:req.body.empMobileNo
   })
 const datainsert=await employeedata.save()
+console.log("....")
 res.status(200).send(datainsert);
 }
 catch{
