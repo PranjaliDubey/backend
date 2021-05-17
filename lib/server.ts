@@ -6,17 +6,11 @@ import * as mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 // import app from "./config/app";
 import * as express from "express";
-const PORT =3000;;
+import  authenticateToken from '../lib/middleware/auth';
+const PORT =5000;;
 const app = express();
-
-
-// get config vars
-console.log(dotenv.config());
-
-// access config var
-process.env.TOKEN_SECRET;
-
-console.log("....",process.env.TOKEN_SECRET)
+dotenv.config();// access config var
+ process.env.JWT_SECRET_KEY;
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
 
@@ -27,16 +21,16 @@ app.listen(PORT, () => {
 
 app.use("/api", router);
 
-// app.use("*", (req, res) => {
-//     return res.status(404).send({ success: false, error: 'invalid api call' });
-// });
+app.use("*", (req, res) => {
+    return res.status(404).send({ success: false, error: 'invalid api call' });
+});
 
 mongoSetup();
 
 // Db connection
 function mongoSetup() {
     // mongoose.Promise = global.Promise;
-    mongoose.connect("mongodb://localhost:27017/user", { useUnifiedTopology: true, useNewUrlParser: true,useFindAndModify:false });
+    mongoose.connect("mongodb://localhost:27017/user", { useUnifiedTopology: true, useNewUrlParser: true,useFindAndModify:false  ,useCreateIndex: true});
     const db = mongoose.connection
     db.on('error', (err) => {
         console.log("Error while connecting DB", err);

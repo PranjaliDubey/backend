@@ -2,12 +2,13 @@ import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt';
 const Schema = mongoose.Schema;
 var UserSchema = new Schema({
-  name:{type: String},
-  email:{type: String},
-  password : {type: String}
+  name:{type: String,required:true},
+  email:{type: String,required:true,unique:true,index: true},
+  password : {type: String,required:true},
+  role:{type:String,required:true}
 
   });
-  mongoose.model('User', UserSchema);
+  export default mongoose.model('User', UserSchema);
 //   UserSchema.methods.comparePassword = function(password) {
 //     return bcrypt.compareSync(password, this.hash_password);
 //   };

@@ -24,7 +24,11 @@ var employee = new mongoose.Schema({
     },
     emp_mobile_no:{
         type: Number,
-           }
+           },
+    emp_role:{
+        type: String,
+        required: true
+               }
 },{ _id: false })
 
 employee.plugin(AutoIncrement, {inc_field: '_id'});

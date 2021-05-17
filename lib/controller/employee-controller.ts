@@ -19,10 +19,10 @@ try{
     emp_last_name:req.body.lastName,
     emp_age:req.body.empAge,
     emp_personal_emailId:req.body.empPersonalEmailId,
-    emp_mobile_no:req.body.empMobileNo
+    emp_mobile_no:req.body.empMobileNo,
+    emp_role:req.body.emprole
   })
 const datainsert=await employeedata.save()
-console.log("....")
 res.status(200).send(datainsert);
 }
 catch{
