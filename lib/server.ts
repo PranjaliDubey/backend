@@ -11,7 +11,7 @@ const PORT =process.env.PORT || 5000;
 const app = express();
 dotenv.config();// access config var
  process.env.JWT_SECRET_KEY;
- console.log("process.env.PORT",process.env.PORT)
+ console.log("process.env.PORT",process.env.url )
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
 
@@ -31,7 +31,7 @@ mongoSetup();
 // Db connection
 function mongoSetup() {
     // mongoose.Promise = global.Promise;
-    mongoose.connect("mongodb://localhost:27017/user", { useUnifiedTopology: true, useNewUrlParser: true,useFindAndModify:false  ,useCreateIndex: true});
+    mongoose.connect(process.env.url, { useUnifiedTopology: true, useNewUrlParser: true,useFindAndModify:false  ,useCreateIndex: true});
     const db = mongoose.connection
     db.on('error', (err) => {
         console.log("Error while connecting DB", err);
