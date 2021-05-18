@@ -5,6 +5,7 @@ import Employee from '../modules/employee-model'
 
 // Baisc APi GET
 async function hello(req: Request, res: Response, next: NextFunction) {
+  console.log("welcome")
   res.status(200).send("welcome");
 }
 
@@ -46,7 +47,7 @@ async function getallData(req: Request, res: Response){
 const updateData= async (req: Request, res: Response) => {
   try{  
   console.log(req.params.id,req.body.firstName)
-    const result=await Employee.findByIdAndUpdate({_id:req.params.id},{
+    const result=await Employee.findOneAndUpdate({emp_number:req.params.id},{
       $set:{
         emp_first_name:req.body.firstName,
         emp_middle_name:req.body.middleName,
@@ -56,9 +57,15 @@ const updateData= async (req: Request, res: Response) => {
         emp_mobile_no:req.body.empMobileNo
       }
     },{ new: true }) 
-    res.status(200).send(result)
+    if(result){
+    res.status(200).send(result);
+  }
+  else{
+    res.status(400).send("employee not exist");
+  }
   }
   catch(err){
+    res.status(200).send(err)
     console.log(err)
   }
 }
@@ -67,7 +74,7 @@ const updateData= async (req: Request, res: Response) => {
 const deletedata= async (req:Request, res:Response)=>{
   try{ 
 console.log(req.query.id)
-const result= await Employee.deleteOne({id:req.query.id},{new:true})
+const result= await Employee.deleteOne({emp_number:req.query.id},{new:true})
 res.send(result)
   }
   catch(err)
