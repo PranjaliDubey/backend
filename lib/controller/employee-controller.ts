@@ -5,7 +5,7 @@ import Employee from '../modules/employee-model'
 
 // Baisc APi GET
 async function hello(req: Request, res: Response, next: NextFunction) {
-  console.log("welcome")
+  console.log("api run")
   res.status(200).send("welcome");
 }
 
