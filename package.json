@@ -4,9 +4,11 @@
   "description": "",
   "main": "./dist/server.js",
   "scripts": {
-    "test": "ts-node ./lib/server.ts",
-    "start": "tsc && nodemon ./dist/server.js",
-    "prod": "tsc && nodemon ./dist/server.js"
+    "start": "node dist/server.js",
+    "postinstall": "tsc",
+    "watch-node": "nodemon dist/server.js",
+    "watch-ts": "tsc -w",
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "author": "",
   "license": "ISC",

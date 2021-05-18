@@ -3,7 +3,7 @@ import * as Inc from "mongoose-sequence";
 const AutoIncrement = Inc(mongoose);
 
 var employee = new mongoose.Schema({
-    _id: Number,
+    emp_number:{type: Number},
     emp_first_name: {
         type: String,
         required: true
@@ -20,20 +20,22 @@ var employee = new mongoose.Schema({
     },
     emp_personal_emailId:{
         type: String,
-        required: true
+        required: true,
+        unique:true,
+        index: true
     },
     emp_mobile_no:{
         type: Number,
            },
     emp_role:{
         type: String,
-        required: true
-               }
-},{ _id: false })
+ }
+            })
+// },{ _id: false })
 
-employee.plugin(AutoIncrement, {inc_field: '_id'});
+employee.plugin(AutoIncrement, {inc_field: 'emp_number'});
 
-employee.index({ _id: 1, seq: 1 }, { unique: true })
+employee.index({ emp_number: 1, seq: 1 }, { unique: true })
 
 export default mongoose.model(
     "Employee",
