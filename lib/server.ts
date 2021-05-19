@@ -11,10 +11,14 @@ const PORT =process.env.PORT || 5000;
 const app = express();
 dotenv.config();// access config var
  process.env.JWT_SECRET_KEY;
- console.log("process.env.PORT",process.env.url )
+ console.log("process.env.PORT",process.env.mongoString )
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
 
+const mongoString= "mongodb+srv://pranjali:pranjali123@cluster0.6si2q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+
+
+// mongo "mongodb+srv://cluster0.6si2q.mongodb.net/myFirstDatabase" --username <username>
 app.listen(PORT, () => {
     console.log(`> Ready on http://localhost:${PORT}`)
 })
@@ -31,7 +35,7 @@ mongoSetup();
 // Db connection
 function mongoSetup() {
     // mongoose.Promise = global.Promise;
-    mongoose.connect(process.env.url, { useUnifiedTopology: true, useNewUrlParser: true,useFindAndModify:false  ,useCreateIndex: true});
+    mongoose.connect(process.env.mongoString, { useUnifiedTopology: true, useNewUrlParser: true,useFindAndModify:false  ,useCreateIndex: true});
     const db = mongoose.connection
     db.on('error', (err) => {
         console.log("Error while connecting DB", err);
