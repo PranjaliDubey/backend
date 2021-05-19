@@ -15,10 +15,9 @@ dotenv.config();// access config var
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
 
-const mongoString= "mongodb+srv://pranjali:pranjali123@cluster0.6si2q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+// const mongoString= "mongodb+srv://pranjali:pranjali123@cluster0.6si2q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 
-// mongo "mongodb+srv://cluster0.6si2q.mongodb.net/myFirstDatabase" --username <username>
 app.listen(PORT, () => {
     console.log(`> Ready on http://localhost:${PORT}`)
 })
