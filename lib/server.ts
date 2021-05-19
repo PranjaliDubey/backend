@@ -7,11 +7,11 @@ import * as dotenv from 'dotenv';
 // import app from "./config/app";
 import * as express from "express";
 import  authenticateToken from '../lib/middleware/auth';
-const PORT =process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 const app = express();
 dotenv.config();// access config var
  process.env.JWT_SECRET_KEY;
- console.log("process.env.PORT",process.env.mongoString )
+ console.log("process.env.PORT",process.env.mongoString,PORT )
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
 
